@@ -1,0 +1,472 @@
+:root {
+    --cream: #f8f5f0;
+    --light-cream: #fcfbf8;
+    --dark-cream: #e8e4dc;
+    --gold: #c5b28a;
+    --dark-gold: #a8956a;
+    --light-gold: #d4c8aa;
+    --charcoal: #2c2c2c;
+    --light-charcoal: #4a4a4a;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Header Navigation - Bootstrap Integration */
+.header {
+    background-color: var(--cream);
+    
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(44, 44, 44, 0.05);
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(200, 190, 160, 0.3);
+}
+
+.header:hover {
+    background-color: var(--light-cream);
+    box-shadow: 0 4px 25px rgba(44, 44, 44, 0.08);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Navbar Bootstrap Override - FLEX PARA MÓVILES */
+.navbar {
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Para pantallas grandes, mantener el comportamiento normal de Bootstrap */
+@media (min-width: 992px) {
+    .navbar {
+        display: block;
+    }
+}
+
+.navbar-toggler {
+    border: 1px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: var(--transition);
+    order: 3;
+    /* Para móviles: logo (1), espacio (2), hamburguesa (3) */
+}
+
+.navbar-toggler:hover {
+    background-color: rgba(197, 178, 138, 0.1);
+    border-color: var(--dark-gold);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(197, 178, 138, 0.25);
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23c5b28a' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* Logo Elegante */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition);
+    flex-shrink: 0;
+    margin-right: 0;
+    order: 1;
+    /* Primero en el flexbox para móviles */
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+}
+
+.logo-icon-img {
+    width: 150px;
+    height: auto;
+    max-height: 90px;
+    object-fit: cover;
+    filter: brightness(0.85);
+    transition: var(--transition);
+}
+
+.logo:hover .logo-icon-img {
+    filter: brightness(0.75);
+    transform: scale(1.05);
+}
+
+/* Contenedor del menú colapsable */
+.navbar-collapse {
+    order: 4;
+    /* Después del botón hamburguesa en móviles */
+    width: 100%;
+}
+
+/* Navegación Bootstrap Override */
+.nav-menu {
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-menu .nav-link {
+    color: var(--charcoal) !important;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 400;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    position: relative;
+    padding: 10px 0 !important;
+    display: inline-block;
+    background: none !important;
+}
+
+.nav-menu .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+}
+
+.nav-menu .nav-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(197, 178, 138, 0.1) 0%, rgba(197, 178, 138, 0) 100%);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-menu .nav-link:hover,
+.nav-menu .nav-link:focus,
+.nav-menu .nav-link.active {
+    color: var(--dark-gold) !important;
+    transform: translateY(-2px);
+}
+
+.nav-menu .nav-link:hover::before,
+.nav-menu .nav-link:focus::before,
+.nav-menu .nav-link.active::before {
+    width: 100%;
+}
+
+.nav-menu .nav-link:hover::after,
+.nav-menu .nav-link:focus::after {
+    opacity: 1;
+}
+
+/* Botón WhatsApp DORADO */
+.nav-whatsapp-btn {
+    background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+    color: var(--cream) !important;
+    padding: 14px 32px !important;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    white-space: nowrap;
+    border: 1px solid rgba(168, 149, 106, 0.3);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(197, 178, 138, 0.2);
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-left: 15px;
+}
+
+.nav-whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.nav-whatsapp-btn:hover {
+    background: linear-gradient(135deg, var(--dark-gold), var(--gold));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(197, 178, 138, 0.3);
+    color: white !important;
+}
+
+.nav-whatsapp-btn:hover::before {
+    left: 100%;
+}
+
+.nav-whatsapp-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(197, 178, 138, 0.2);
+}
+
+.nav-whatsapp-btn i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-whatsapp-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Efecto scroll para header */
+.header.scrolled {
+    padding: 15px 0;
+    background-color: rgba(248, 245, 240, 0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 3px 20px rgba(44, 44, 44, 0.08);
+}
+
+.header.scrolled .logo-icon-img {
+    width: 120px;
+    transition: width 0.3s ease;
+}
+
+/* Separador visual sutil para items del menú */
+.nav-menu .nav-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 15px;
+    background-color: rgba(197, 178, 138, 0.2);
+    pointer-events: none;
+}
+
+/* ===== RESPONSIVE DESIGN - ENFOCADO EN MÓVILES ===== */
+
+/* Para pantallas grandes (≥1200px) */
+@media (min-width: 1200px) {
+    .header-container {
+        padding: 0 40px;
+    }
+
+    .nav-menu {
+        gap: 50px;
+    }
+}
+
+/* Tablets en horizontal y desktop (≥992px) */
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        flex-basis: auto;
+    }
+
+    .nav-menu {
+        gap: 40px;
+        margin-right: 20px;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+/* Tablets en vertical (≥768px) y (≤991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .header-container {
+        padding: 0 25px;
+    }
+
+    .logo-icon-img {
+        width: 100px;
+    }
+
+    .nav-menu {
+        gap: 25px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .nav-menu .nav-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .nav-whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+        margin: 15px 0 0 0;
+    }
+}
+
+/* ===== MÓVILES (≤767px) - DISEÑO ESPECÍFICO ===== */
+@media (max-width: 767px) {
+
+
+    .header-container {
+        padding: 0 20px;
+    }
+
+    /* FLEXBOX PARA LOGO Y HAMBURGUESA */
+    .header-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    /* Logo en móviles - más pequeño */
+    .logo {
+        flex: 0 0 auto;
+        order: 1;
+    }
+
+    .logo-icon-img {
+        width: 100px;
+    }
+
+    /* Botón hamburguesa alineado a la derecha */
+    .navbar-toggler {
+        order: 2;
+        margin-left: auto;
+        /* Empuja el botón a la derecha */
+    }
+
+    /* Menú desplegable - debajo del header */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--light-cream);
+        border-radius: 0 0 8px 8px;
+        padding: 20px;
+        margin-top: 10px;
+        box-shadow: 0 5px 20px rgba(44, 44, 44, 0.1);
+        border: 1px solid rgba(200, 190, 160, 0.2);
+        border-top: none;
+        z-index: 1000;
+        order: 3;
+        width: 100%;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .nav-menu .nav-item {
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .nav-menu .nav-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .nav-menu .nav-link {
+        padding: 12px 15px !important;
+        border-radius: 4px;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    .nav-menu .nav-link:hover::after {
+        opacity: 1;
+    }
+
+    /* Botón WhatsApp en menú móvil */
+    .nav-whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        padding: 14px 20px !important;
+        order: 4;
+    }
+
+    /* Header con scroll en móviles */
+    .header.scrolled {
+        padding: 10px 0;
+    }
+
+    .header.scrolled .logo-icon-img {
+        width: 90px;
+    }
+}
+
+/* Móviles pequeños (≤480px) */
+@media (max-width: 480px) {
+
+
+    .logo-icon-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .navbar-toggler {
+        padding: 6px 10px;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 0.95rem;
+        padding: 10px 12px !important;
+    }
+
+    .nav-whatsapp-btn {
+        padding: 12px 16px !important;
+        font-size: 0.9rem;
+    }
+
+    .nav-whatsapp-btn i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Móviles muy pequeños (≤360px) */
+@media (max-width: 360px) {
+
+    .logo-icon-img {
+        width: 80px;
+    }
+
+    .navbar-toggler {
+        padding: 5px 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilo específico para logo PNG */
+.logo-icon-img[src$=".png"] {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+

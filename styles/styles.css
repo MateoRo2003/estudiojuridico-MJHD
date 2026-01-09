@@ -1,0 +1,188 @@
+   :root {
+       --primary-black: #0a0a0a;
+       --secondary-black: #1a1a1a;
+       --gold: #d4af37;
+       --light-gold: #f4e8c1;
+       --white: #ffffff;
+       --light-gray: #f5f5f5;
+       --dark-gray: #333333;
+   }
+
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+   }
+
+   body {
+       font-family: 'Montserrat', sans-serif;
+       color: var(--charcoal);
+       line-height: 1.6;
+   }
+
+   h1,
+   h2,
+   h3,
+   h4 {
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       font-weight: 600;
+       margin-bottom: 1rem;
+   }
+
+   .container {
+       width: 100%;
+       max-width: 1200px;
+       margin: 0 auto;
+       padding: 0 20px;
+   }
+
+
+
+   /* Sections General Styling */
+   section {
+       padding: 50px 0;
+   }
+
+   .section-title {
+       text-align: center;
+       margin-bottom: 60px;
+       position: relative;
+   }
+
+   .section-title h2 {
+       font-size: 2.5rem;
+       color: var(--primary-black);
+       display: inline-block;
+       padding-bottom: 15px;
+   }
+
+   .section-title h2::after {
+       content: '';
+       position: absolute;
+       bottom: 0;
+       left: 50%;
+       transform: translateX(-50%);
+       width: 80px;
+       height: 4px;
+       background: var(--gold);
+   }
+
+
+   /* Why Choose Us Section */
+
+   /* CTA Section */
+   .cta {
+       background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), url('https://images.unsplash.com/photo-1589391886085-8b6b0ac72a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+       color: var(--white);
+       text-align: center;
+       padding: 120px 0;
+   }
+
+   .cta h2 {
+       font-size: 2.8rem;
+       margin-bottom: 20px;
+       color: var(--white);
+   }
+
+   .cta p {
+       font-size: 1.3rem;
+       margin-bottom: 40px;
+       max-width: 700px;
+       margin-left: auto;
+       margin-right: auto;
+       color: #ddd;
+   }
+
+   .btn-whatsapp-large {
+       display: inline-block;
+       background: linear-gradient(135deg, #25D366, #128C7E);
+       color: white;
+       padding: 22px 50px;
+       font-size: 1.4rem;
+       font-weight: 600;
+       text-decoration: none;
+       border-radius: 4px;
+       transition: all 0.3s ease;
+       box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+       letter-spacing: 1px;
+   }
+
+   .btn-whatsapp-large:hover {
+       transform: translateY(-3px);
+       box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+   }
+
+   .btn-whatsapp-large i {
+       margin-right: 10px;
+       font-size: 1.5rem;
+   }
+
+
+
+
+   /* Responsive Design */
+   @media (max-width: 992px) {
+       .hero h1 {
+           font-size: 2.8rem;
+       }
+
+       .hero-subtitle {
+           font-size: 1.5rem;
+       }
+
+       section {
+           padding: 80px 0;
+       }
+
+       .section-title h2 {
+           font-size: 2.2rem;
+       }
+   }
+
+   @media (max-width: 768px) {
+       .hero {
+           padding: 80px 0;
+           min-height: 90vh;
+       }
+
+       .hero h1 {
+           font-size: 2.2rem;
+       }
+
+       .hero-subtitle {
+           font-size: 1.3rem;
+       }
+
+       .btn-whatsapp,
+       .btn-whatsapp-large {
+           padding: 15px 30px;
+           font-size: 1.1rem;
+       }
+
+       .cta h2 {
+           font-size: 2.2rem;
+       }
+
+       .cta p {
+           font-size: 1.1rem;
+       }
+   }
+
+   @media (max-width: 576px) {
+       .hero h1 {
+           font-size: 1.8rem;
+       }
+
+       .hero-subtitle {
+           font-size: 1.1rem;
+       }
+
+       .section-title h2 {
+           font-size: 1.8rem;
+       }
+
+       .services-grid,
+       .features {
+           grid-template-columns: 1fr;
+       }
+   }
