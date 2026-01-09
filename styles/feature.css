@@ -1,27 +1,340 @@
- .why-us {
-            background-color: var(--white);
+    :root {
+            --cream: #EDE5DC;
+            --cream-light: #F5F1ED;
+            --gold: #C5A572;
+            --gold-dark: #9B7E4F;
+            --charcoal: #3D3D3D;
+            --text-gray: #6B6B6B;
+            --white: #FFFFFF;
         }
-        
-        .features {
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            background-color: var(--cream);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .why-us-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
-        
-        .feature {
-            text-align: center;
-            padding: 30px 20px;
+
+        /* Left Image Section */
+        .why-us-image {
+            position: relative;
         }
-        
-        .feature i {
-            font-size: 2.5rem;
+
+        .image-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 100% Commitment Badge */
+        .commitment-badge {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--charcoal);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .badge-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .badge-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-text .percentage {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .badge-text .label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* Right Content Section */
+        .why-us-content {
+            padding-left: 20px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             color: var(--gold);
+            font-weight: 400;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        
-        .feature h3 {
-            font-size: 1.3rem;
-            color: var(--primary-black);
-            margin-bottom: 15px;
+
+        .section-label::before {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background-color: var(--gold);
         }
-        
+
+        .why-us-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+
+        .why-us-title .highlight {
+            color: var(--gold-dark);
+        }
+
+        .why-us-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Value Cards */
+        .values-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .value-card {
+            background-color: var(--white);
+            padding: 25px 30px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .value-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .value-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+        }
+
+        .value-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .value-content p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        /* CTA Link */
+        .why-us-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .why-us-cta::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .why-us-cta:hover {
+            color: var(--gold);
+        }
+
+        .why-us-cta:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .why-us-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .why-us-content {
+                padding-left: 0;
+            }
+
+            .container {
+                padding: 0 40px;
+            }
+
+            .commitment-badge {
+                bottom: 20px;
+                right: 20px;
+                padding: 15px 20px;
+            }
+
+            .badge-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .badge-text .percentage {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-us {
+                padding: 60px 0;
+            }
+
+            .container {
+                padding: 0 30px;
+            }
+
+            .why-us-title {
+                font-size: 2rem;
+            }
+
+            .value-card {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .value-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .commitment-badge {
+                padding: 12px 18px;
+                gap: 12px;
+            }
+
+            .badge-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .badge-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .badge-text .percentage {
+                font-size: 1.3rem;
+            }
+
+            .badge-text .label {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-us-title {
+                font-size: 1.7rem;
+            }
+
+            .section-label {
+                font-size: 0.7rem;
+            }
+
+            .why-us-description {
+                font-size: 0.9rem;
+            }
+
+            .value-content h3 {
+                font-size: 1rem;
+            }
+
+            .value-content p {
+                font-size: 0.85rem;
+            }
+        }

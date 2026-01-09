@@ -245,6 +245,7 @@
     margin-top: auto;
     padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    flex-direction: column;
 }
 
 .service-tag {
@@ -507,9 +508,10 @@
     }
     
     .service-footer {
-        flex-direction: column;
+        display: flex;
+        flex-direction: column-reverse;
         gap: 15px;
-        align-items: flex-start;
+        
     }
     
     .service-arrow {
