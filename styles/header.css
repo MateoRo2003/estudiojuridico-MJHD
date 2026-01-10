@@ -10,10 +10,11 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ===== HEADER OPTIMIZADO - SIN TRABAS ===== */
+
 /* Header Navigation - Bootstrap Integration */
 .header {
     background-color: var(--cream);
-    
     position: fixed;
     width: 100%;
     top: 0;
@@ -21,6 +22,8 @@
     box-shadow: 0 2px 20px rgba(44, 44, 44, 0.05);
     transition: var(--transition);
     border-bottom: 1px solid rgba(200, 190, 160, 0.3);
+    transform: translateZ(0); /* Hardware acceleration */
+    backface-visibility: hidden;
 }
 
 .header:hover {
@@ -56,7 +59,8 @@
     border-radius: 4px;
     transition: var(--transition);
     order: 3;
-    /* Para móviles: logo (1), espacio (2), hamburguesa (3) */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .navbar-toggler:hover {
@@ -75,6 +79,12 @@
     height: 1.5em;
 }
 
+/* BOTÓN HAMBURGUESA ANIMADO */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23a8956a' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M6 6L24 24M24 6L6 24'/%3E%3C/svg%3E");
+    transition: background-image 0.3s ease;
+}
+
 /* Logo Elegante */
 .logo {
     display: flex;
@@ -84,7 +94,6 @@
     flex-shrink: 0;
     margin-right: 0;
     order: 1;
-    /* Primero en el flexbox para móviles */
 }
 
 .logo:hover {
@@ -105,11 +114,11 @@
     transform: scale(1.05);
 }
 
-/* Contenedor del menú colapsable */
+/* Contenedor del menú colapsable - OPTIMIZADO */
 .navbar-collapse {
     order: 4;
-    /* Después del botón hamburguesa en móviles */
     width: 100%;
+    transition: height 0.35s ease !important; /* Solo height para Bootstrap */
 }
 
 /* Navegación Bootstrap Override */
@@ -264,7 +273,44 @@
     pointer-events: none;
 }
 
-/* ===== RESPONSIVE DESIGN - ENFOCADO EN MÓVILES ===== */
+/* ===== OVERLAY Y BOTÓN CERRAR ===== */
+
+/* Overlay para fondo cuando menú está abierto */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 44, 44, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    cursor: pointer;
+}
+
+/* Botón cerrar para móviles */
+.mobile-menu-close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--charcoal);
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1003;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    color: var(--dark-gold);
+}
+
+/* ===== RESPONSIVE DESIGN OPTIMIZADO ===== */
 
 /* Para pantallas grandes (≥1200px) */
 @media (min-width: 1200px) {
@@ -293,6 +339,14 @@
 
     .navbar-toggler {
         display: none;
+    }
+    
+    .mobile-menu-close {
+        display: none !important;
+    }
+    
+    .menu-overlay {
+        display: none !important;
     }
 }
 
@@ -323,67 +377,79 @@
     }
 }
 
-/* ===== MÓVILES (≤767px) - DISEÑO ESPECÍFICO ===== */
-@media (max-width: 767px) {
-
-
+/* ===== MÓVILES OPTIMIZADOS (≤991px) ===== */
+@media (max-width: 991px) {
+    /* Layout optimizado para móviles */
     .header-container {
-        padding: 0 20px;
-    }
-
-    /* FLEXBOX PARA LOGO Y HAMBURGUESA */
-    .header-container {
-        display: flex;
-        flex-direction: row;
+        padding: 0 20px !important;
+        display: flex !important;
         align-items: center;
         justify-content: space-between;
-
+        width: 100%;
     }
-
+    
     /* Logo en móviles - más pequeño */
     .logo {
         flex: 0 0 auto;
         order: 1;
+        z-index: 1002;
     }
 
     .logo-icon-img {
         width: 100px;
+        max-height: 60px;
     }
 
-    /* Botón hamburguesa alineado a la derecha */
+    /* Botón hamburguesa optimizado */
     .navbar-toggler {
-        order: 2;
-        margin-left: auto;
-        /* Empuja el botón a la derecha */
+        order: 2 !important;
+        margin-left: 0;
+        padding: 8px 10px;
+        z-index: 1002;
+    }
+    
+    /* Override del contenedor de Bootstrap */
+    .navbar > .container {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
-    /* Menú desplegable - debajo del header */
+    /* Menú desplegable - POSICIÓN FIXED OPTIMIZADA */
     .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
         background-color: var(--light-cream);
-        border-radius: 0 0 8px 8px;
-        padding: 20px;
-        margin-top: 10px;
-        box-shadow: 0 5px 20px rgba(44, 44, 44, 0.1);
-        border: 1px solid rgba(200, 190, 160, 0.2);
-        border-top: none;
-        z-index: 1000;
-        order: 3;
-        width: 100%;
+        padding: 80px 20px 30px !important;
+        margin: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        z-index: 1001;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .navbar-collapse.show {
+        display: block !important;
     }
 
     .nav-menu {
         flex-direction: column;
         gap: 0;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         width: 100%;
     }
 
     .nav-menu .nav-item {
-        margin: 8px 0;
+        margin: 6px 0;
         width: 100%;
     }
 
@@ -392,24 +458,54 @@
     }
 
     .nav-menu .nav-link {
-        padding: 12px 15px !important;
-        border-radius: 4px;
+        padding: 16px 20px !important;
+        border-radius: 6px;
         width: 100%;
         text-align: center;
         display: block;
+        font-size: 1.05rem;
+        background: rgba(197, 178, 138, 0.05) !important;
+        transition: background-color 0.2s ease, color 0.2s ease !important;
     }
-
-    .nav-menu .nav-link:hover::after {
-        opacity: 1;
+    
+    /* Deshabilitar animaciones complejas en móviles */
+    .nav-menu .nav-link::before,
+    .nav-menu .nav-link::after {
+        display: none;
+    }
+    
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link:focus {
+        transform: none !important;
+        background-color: rgba(197, 178, 138, 0.1) !important;
+        color: var(--dark-gold) !important;
     }
 
     /* Botón WhatsApp en menú móvil */
     .nav-whatsapp-btn {
         width: 100%;
         justify-content: center;
-        margin: 10px 0 0 0;
-        padding: 14px 20px !important;
+        margin: 15px 0 0 0 !important;
+        padding: 16px 20px !important;
         order: 4;
+        transition: background-color 0.2s ease, transform 0.2s ease !important;
+    }
+    
+    .nav-whatsapp-btn::before {
+        display: none; /* Eliminar efecto complejo en móviles */
+    }
+    
+    .nav-whatsapp-btn:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* Mostrar botón cerrar y overlay en móviles */
+    .mobile-menu-close {
+        display: block;
+    }
+    
+    .navbar-collapse.show ~ .menu-overlay {
+        display: block;
     }
 
     /* Header con scroll en móviles */
@@ -419,30 +515,47 @@
 
     .header.scrolled .logo-icon-img {
         width: 90px;
+        height: 90px;
+    }
+}
+
+/* MÓVILES PEQUEÑOS OPTIMIZADOS (≤767px) */
+@media (max-width: 767px) {
+    .navbar-collapse {
+        padding: 75px 15px 25px !important;
+    }
+    
+    .nav-menu .nav-link {
+        padding: 14px 16px !important;
+        font-size: 1rem;
+    }
+    
+    .mobile-menu-close {
+        top: 15px;
+        right: 15px;
+        font-size: 1.8rem;
     }
 }
 
 /* Móviles pequeños (≤480px) */
 @media (max-width: 480px) {
-
-
     .logo-icon-img {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        max-height: 130px;
     }
 
     .navbar-toggler {
-        padding: 6px 10px;
+        padding: 6px 8px;
     }
 
     .nav-menu .nav-link {
         font-size: 0.95rem;
-        padding: 10px 12px !important;
+        padding: 12px 14px !important;
     }
 
     .nav-whatsapp-btn {
-        padding: 12px 16px !important;
-        font-size: 0.9rem;
+        padding: 14px 16px !important;
+        font-size: 0.95rem;
     }
 
     .nav-whatsapp-btn i {
@@ -452,14 +565,17 @@
 
 /* Móviles muy pequeños (≤360px) */
 @media (max-width: 360px) {
-
     .logo-icon-img {
         width: 80px;
     }
 
     .navbar-toggler {
-        padding: 5px 8px;
+        padding: 5px 7px;
         font-size: 0.9rem;
+    }
+    
+    .header-container {
+        padding: 0 15px !important;
     }
 }
 
@@ -469,4 +585,3 @@
     box-shadow: none;
     border-radius: 0;
 }
-
