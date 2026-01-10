@@ -608,28 +608,56 @@
         </div>
     </footer>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const parallaxBg = document.getElementById('parallax-bg');
-            const heroSection = document.querySelector('.hero');
-
-            // Solo activar parallax en desktop
-            if (window.innerWidth > 768) {
-                window.addEventListener('scroll', function () {
-                    const scrolled = window.pageYOffset;
-                    const rate = scrolled * 0.5;
-
-                    parallaxBg.style.transform = 'translate3d(0, ' + rate + 'px, 0)';
-                });
-            }
+            const heroBgImage = document.querySelector('.hero-bg-image');
 
             // Precargar la imagen para evitar parpadeo
             const img = new Image();
-            img.src = 'img/descargar (1).jpeg';
+            img.src = 'img/image.webp'; // Asegúrate que esta ruta sea correcta
             img.onload = function () {
-                document.querySelector('.hero-bg-image').style.opacity = '1';
+                if (heroBgImage) {
+                    heroBgImage.style.opacity = '1';
+                    heroBgImage.style.transition = 'opacity 0.5s ease';
+                }
             };
+
+            // Solo activar parallax en desktop (más de 768px)
+            function handleParallax() {
+                if (window.innerWidth > 768) {
+                    window.addEventListener('scroll', function () {
+                        const scrolled = window.pageYOffset;
+                        const rate = scrolled * 0.5;
+
+                        if (parallaxBg) {
+                            parallaxBg.style.transform = 'translate3d(0, ' + rate + 'px, 0)';
+                        }
+                    });
+                } else {
+                    // En móviles, asegurarse de que no haya transform
+                    if (parallaxBg) {
+                        parallaxBg.style.transform = 'translate3d(0, 0, 0)';
+                    }
+                }
+            }
+
+            // Ejecutar al cargar
+            handleParallax();
+
+            // Re-evaluar al redimensionar
+            window.addEventListener('resize', handleParallax);
+
+            // Optimización para móviles: reducir animaciones
+            if (window.innerWidth <= 768) {
+                // Reducir o eliminar algunas animaciones para mejor rendimiento
+                const animatedElements = document.querySelectorAll('[class*="animation"], [style*="animation"]');
+                animatedElements.forEach(el => {
+                    if (el.style.animation) {
+                        el.style.animationDuration = '0.3s';
+                    }
+                });
+            }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

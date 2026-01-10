@@ -726,3 +726,267 @@
         display: none;
     }
 }
+
+/* Hero Section con Fondo Parallax */
+.hero-section {
+    position: relative;
+    color: var(--white);
+    padding: 180px 0 100px;
+    text-align: left;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Fondo Parallax con imagen separada - MODIFICADO PARA RESPONSIVE */
+.hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cambiado de 120% a 100% */
+    z-index: -2;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/image.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* Transición suave para cambios de tamaño */
+    transition: background-size 0.3s ease;
+}
+
+/* Overlay optimizado para móviles */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.8) 50%, /* Más oscuro para mejor legibilidad */
+            rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* Ajuste específico para móviles */
+@media (max-width: 768px) {
+    .hero-bg-image {
+        background-size: cover; /* Mantener cover para móviles */
+        background-position: center center; /* Asegurar que esté centrada */
+        /* Opcional: puedes usar un tamaño diferente si necesitas */
+        /* background-size: 150% auto; */
+    }
+    
+    /* Overlay más oscuro para mejor contraste en móviles */
+    .hero-bg-overlay {
+        background: linear-gradient(90deg,
+                rgba(0, 0, 0, 0.97) 0%,
+                rgba(0, 0, 0, 0.85) 50%,
+                rgba(0, 0, 0, 0.75) 100%);
+    }
+}
+
+/* Para tablets */
+@media (max-width: 992px) and (min-width: 769px) {
+    .hero-bg-image {
+        background-position: center center;
+    }
+    
+    .hero-bg-overlay {
+        background: linear-gradient(90deg,
+                rgba(0, 0, 0, 0.93) 0%,
+                rgba(0, 0, 0, 0.75) 50%,
+                rgba(0, 0, 0, 0.5) 100%);
+    }
+}
+
+/* ===== MEJORAS PARA MÓVILES ===== */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 120px 0 60px; /* Menos padding superior/inferior */
+        min-height: auto; /* Altura automática */
+        text-align: center;
+    }
+
+    .hero-container {
+        text-align: center;
+        padding: 0 20px; /* Más padding lateral */
+    }
+
+    .hero-main-title {
+        font-size: 2.2rem; /* Un poco más grande que antes */
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        padding-left: 0;
+        margin: 0 auto 30px;
+        max-width: 100%; /* Usar todo el ancho disponible */
+        line-height: 1.6;
+    }
+
+    /* Botones en móviles */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch; /* Que ocupen todo el ancho */
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        width: 100%;
+        max-width: none; /* Sin límite máximo */
+        justify-content: center;
+        padding: 16px 20px; /* Un poco menos de padding */
+    }
+
+    /* Features en una columna */
+    .hero-features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 100%; /* Ocupar todo el ancho */
+        margin-top: 20px;
+    }
+
+    .hero-feature-item {
+        padding: 25px 15px;
+    }
+    
+    /* Separador más pequeño */
+    .hero-separator {
+        margin-top: 40px;
+    }
+    
+    .hero-separator-line {
+        width: 60px; /* Más corto en móviles */
+    }
+    
+    .hero-separator-ornament {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 100px 0 40px;
+    }
+    
+    .hero-main-title {
+        font-size: 1.9rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-tagline {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-tagline::before,
+    .hero-tagline::after {
+        width: 10px; /* Más cortos */
+    }
+    
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        font-size: 1rem;
+        padding: 14px 20px;
+    }
+    
+    .hero-feature-item {
+        padding: 20px 15px;
+    }
+    
+    .hero-feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .hero-feature-icon {
+        font-size: 2rem;
+    }
+    
+    .hero-separator {
+        margin-top: 30px;
+        display: flex; /* Mantener visible pero más pequeño */
+    }
+    
+    .hero-separator-line {
+        width: 40px;
+    }
+    
+    .hero-separator-ornament {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* Para tablets en landscape */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 140px 0 80px;
+    }
+    
+    .hero-main-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-features {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en landscape */
+    }
+}
+
+/* Optimización para pantallas grandes */
+@media (min-width: 1400px) {
+    .hero-bg-image {
+        background-size: cover; /* Asegurar que cubra bien */
+    }
+}
+
+/* Ajustes específicos para el contenedor de fondo */
+@media (max-width: 768px) {
+    .hero-bg-container {
+        height: 100vh; /* Ocupar toda la pantalla visible */
+        position: fixed; /* Fijo para mejor efecto */
+    }
+    
+    /* Si quieres que el contenido se desplace sobre un fondo fijo */
+    .hero-section {
+        background: transparent;
+    }
+    
+    .hero-container {
+        position: relative;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.4); /* Fondo semitransparente para legibilidad */
+        backdrop-filter: blur(5px);
+        border-radius: 10px;
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+}
